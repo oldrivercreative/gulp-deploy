@@ -4,9 +4,10 @@ const PLUGIN_NAME = 'Propeller';
 class Deployer {
 
   /**
-   * Deploy source to destination with optional connection configuration:
+   * Deploy source to destination:
    * Override this method to write your own deployer.
-   * Return a Gulp stream to properly close the compile method.
+   * The connection parameter is optional.
+   * Return a Gulp stream to properly close this method.
    *
    * @param {string} src
    * @param {string} dest

@@ -1,9 +1,11 @@
 # Propeller
+[![GitHub issues](https://img.shields.io/github/issues/oldrivercreative/propeller.svg)](https://github.com/oldrivercreative/propeller/issues) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/oldrivercreative/propeller/master/LICENSE) [![Twitter](https://img.shields.io/twitter/url/https/github.com/oldrivercreative/propeller.svg?style=social)](https://twitter.com/intent/tweet?text=%23propeller&url=https%3A%2F%2Fgithub.com%2Foldrivercreative%2Fpropeller)
+
 Propeller is a simple and lightweight [Gulp](http://gulpjs.com/) plugin that allows you to compile and deploy your projects using easy-to-read configuration files. **Compilers** are used to build your project, while **deployers** are used to push files to both local and remote environments.
 
 ### Getting Started
 Install Propeller using [npm](https://www.npmjs.com/get-npm):
-```
+```sh
 npm install gulp-propeller --save-dev
 ```
 
@@ -89,7 +91,7 @@ Compile ES6 files into client-ready ES5 using the [Babel](https://babeljs.io/) p
 }
 ```
 
-##### Production Mode
+###### Production Mode
 [Babili](https://github.com/babel/babili) is used in _production mode_ to minify the compiled scripts for better performance.
 
 ---
@@ -208,51 +210,77 @@ The SFTP deployer utilizes [gulp-sftp](https://www.npmjs.com/package/gulp-sftp) 
 Propeller is built to be highly extensible. Create custom compilers and deployers to add new capabilities to your Propeller projects.
 
 ### Custom Compilers
-Extend `propeller.Compiler` and pass an instance of your extended class to `propeller.extend()` to register a custom Propeller compiler.
+Extend `propeller.Compiler` and pass an instance of your extended class to `propeller.extend` to register a custom compiler.
 ```js
 const gulp = require('gulp');
 const propeller = require('gulp-propeller');
 
-// move compiler
-class Move extends propeller.Compiler {
+class Coffee extends propeller.Compiler {
+
+  /**
+   * Compile source to destination:
+   * Override this method to write your own compiler.
+   * Return a Gulp stream to properly close this method.
+   *
+   * @param {string} src
+   * @param {string} dest
+   * @return {Object} stream
+   */
   compile(src, dest){
-    return gulp.src(src).pipe(gulp.dest(dest));
+
+    // do stuff
+
   }
+
 }
 
 // extend propeller
-propeller.extend(new Move());
+propeller.extend(new Coffee());
 ```
 
-Custom compilers should include a `compile()` method that returns a Gulp stream object upon closure.
+Custom compilers should include a `compile` method that returns a Gulp stream object upon closure.
 
-Utilize custom compilers by adding them to your task list. Always use the _lower-case class name_ of your custom compiler when creating tasks. For example, the custom `Move` compiler becomes `move:` in our `propeller.json` task list:
+Utilize custom compilers by adding them to your task list. Always use the _lower-case class name_ of your custom compiler when creating tasks. For example, the custom `Coffee` compiler becomes `coffee` in our `propeller.json` task list:
 ```json
 {
   "tasks": [
-    "move: source/file.txt > destination"
+    "coffee: source/file.coffee > destination"
   ]
 }
 ```
 
 ### Custom Deployers
-Extend `propeller.Deployer` and pass an instance of your extended class to `propeller.extend()` to register a custom Propeller deployer.
+Extend `propeller.Deployer` and pass an instance of your extended class to `propeller.extend` to register a custom deployer.
 ```js
 const gulp = require('gulp');
 const propeller = require('gulp-propeller');
 
-// webdav deployer
 class WebDav extends propeller.Deployer {
+
+  /**
+   * Deploy source to destination:
+   * Override this method to write your own deployer.
+   * The connection parameter is optional.
+   * Return a Gulp stream to properly close this method.
+   *
+   * @param {string} src
+   * @param {string} dest
+   * @param {Object} connection
+   * @return {Object} stream
+   */
   deploy(src, dest, connection){
-    return gulp.src(src).pipe(gulp.dest(dest));
+
+    // do stuff
+
   }
+
 }
 
 // extend propeller
 propeller.extend(new WebDav());
 ```
 
-Custom deployers should include a `deploy()` method that returns a Gulp stream object upon closure. Optionally employ the `connection` parameter in the `deploy` method to pass custom JSON configuration data to your deployer.
+Custom deployers should include a `deploy` method that returns a Gulp stream object upon closure. Optionally employ the `connection` parameter in the `deploy` method to pass custom JSON configuration data to your deployer.
 
 Utilize custom deployers by referring to them in your environments list. Always use the _lower-case class name_ of your deployer in configuration files. For example, the custom `WebDav` deployer becomes `webdav` in our `propeller.json` environments list:
 ```json
