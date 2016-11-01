@@ -1,5 +1,4 @@
 const gutil = require('gulp-util');
-const through = require('through2');
 const PLUGIN_NAME = 'Propeller';
 
 /**

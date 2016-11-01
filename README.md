@@ -30,8 +30,11 @@ gulp.task('default', function(){
 });
 ```
 
+
+
 ## Compilers
 Compilers are used to build your project in preparation for deployment.
+
 
 ### Compiler Configuration
 Configure compilers for your project by adding a `tasks` array to your `propeller.json` file. Tasks are formatted as `compiler: source > destination`. For example:
@@ -43,6 +46,7 @@ Configure compilers for your project by adding a `tasks` array to your `propelle
 }
 ```
 In this example, we define one task in which the `sass` compiler is given a source of `scss/app.scss` and a destination of `public/css`. The Sass compiler will process all source files and place the compiled CSS files into the destination directory.
+
 
 ### Running Compiler Tasks
 With tasks now configured in the `propeller.json` file, run all tasks in sequential order using `propeller.run()`:
@@ -57,6 +61,7 @@ gulp.task('default', function(){
 
 });
 ```
+
 
 ### Core Compilers
 Propeller includes several core compilers that are available by default.
@@ -107,8 +112,11 @@ Copy files from one location to another. This can be useful for automating the m
 }
 ```
 
+
+
 ## Deployers
 Deployers are used to move project files to a target environment.
+
 
 ### Deployer Configuration
 Configure deployers for your project by adding an `environments` object to your `propeller.json` file. List environments by specifying an environment name, type, source, and destination:
@@ -124,6 +132,7 @@ Configure deployers for your project by adding an `environments` object to your 
 }
 ```
 In this example, we define one environment called `local`, using the `file` deployer.
+
 
 ### Running Deployments
 With an environment now configured in the `propeller.json` file, deployments can be run using `propeller.deploy()`:
@@ -143,6 +152,7 @@ Note that deployments can be chained together with compiler tasks so that they a
 ```javascript
 propeller.run().deploy('local').deploy('staging');
 ```
+
 
 ### Core Deployers
 Propeller includes several core deployers that are available by default.
@@ -227,8 +237,11 @@ Note that the SFTP deployer utilizes [gulp-sftp](https://www.npmjs.com/package/g
 propeller.deploy('production');
 ```
 
+
+
 ## Extending Propeller
 Propeller is built to be highly extensible. Write custom compilers and deployers to add new capabilities to your Propeller projects.
+
 
 ### Custom Compilers
 Extend `propeller.Compiler` and pass an instance of your extended class to `propeller.extend()` to register a custom Propeller compiler.
@@ -257,6 +270,7 @@ Utilize custom compilers by adding them to your task list. Always use the _lower
   ]
 }
 ```
+
 
 ### Custom Deployers
 Extend `propeller.Deployer` and pass an instance of your extended class to `propeller.extend()` to register a custom Propeller deployer.

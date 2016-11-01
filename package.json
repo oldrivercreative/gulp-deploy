@@ -1,7 +1,7 @@
 {
-  "name": "propeller",
+  "name": "gulp-propeller",
   "description": "A simple and lightweight Gulp plugin that allows you to compile and deploy your projects using easy-to-read configuration files.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "src/propeller.js",
   "dependencies": {
     "babel-core": "^6.17.0",
@@ -17,15 +17,15 @@
     "gulp-using": "^0.1.1",
     "gulp-util": "^3.0.7",
     "gulp-webpack": "^1.5.0",
-    "through2": "^2.0.1",
     "vinyl-ftp": "^0.5.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cd test && gulp"
   },
+  "readme": "README.md",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/oldrivercreative/gulp-deploy.git"
+    "url": "git+https://github.com/oldrivercreative/propeller.git"
   },
   "keywords": [
     "propeller",
@@ -35,7 +35,7 @@
   "author": "Kyle Schaeffer",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/oldrivercreative/gulp-deploy/issues"
+    "url": "https://github.com/oldrivercreative/propeller/issues"
   },
-  "homepage": "https://github.com/oldrivercreative/gulp-deploy#readme"
+  "homepage": "https://github.com/oldrivercreative/propeller#readme"
 }
