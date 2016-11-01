@@ -1,0 +1,37 @@
+{
+  "tasks": [
+    "sass: scss/**/*.scss > build/css",
+    "webpack: js/app.js > build/js/bundle.js",
+    "copy: copy/file.txt > build/txt"
+  ],
+  "environments": {
+    "local": {
+      "type": "file",
+      "src": "build/**",
+      "dest": "deploy"
+    },
+    "staging": {
+      "type": "ftp",
+      "src": "build/**",
+      "dest": "public_html/staging",
+      "connection": {
+        "host": "staging.domain.com",
+        "user": "username",
+        "pass": "password",
+        "secure": true,
+        "port": 21
+      }
+    },
+    "production": {
+      "type": "sftp",
+      "src": "build/**",
+      "dest": "public_html/www",
+      "connection": {
+        "host": "www.domain.com",
+        "user": "username",
+        "pass": "password",
+        "port": 22
+      }
+    }
+  }
+}
