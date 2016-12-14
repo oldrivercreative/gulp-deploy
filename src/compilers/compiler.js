@@ -8,7 +8,7 @@ class Compiler {
    * Override this method to write your own compiler.
    * Return a Gulp stream to properly close this method.
    *
-   * @param {string} src
+   * @param {string|array} src
    * @param {string} dest
    * @return {Object} stream
    */

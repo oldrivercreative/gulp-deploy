@@ -62,6 +62,34 @@ Propeller includes several core compilers that are available by default.
 
 ---
 
+#### `concat` Compiler
+Concatenate files into a single file at the target location. Use a comma-separated array syntax to specify all source files in order.
+
+###### Configuration
+```json
+{
+  "tasks": [
+    "concat: [ js/one.js, js/two.js ] > public/js/all.js"
+  ]
+}
+```
+
+---
+
+#### `copy` Compiler
+Copy files from one location to another.
+
+###### Configuration
+```json
+{
+  "tasks": [
+    "copy: source/icons.otf > public/fonts"
+  ]
+}
+```
+
+---
+
 #### `sass` Compiler
 Compile [Sass](http://sass-lang.com/) stylesheets to CSS.
 
@@ -93,20 +121,6 @@ Compile ES6 files into client-ready ES5 using the [Babel](https://babeljs.io/) p
 
 ###### Production Mode
 [Babili](https://github.com/babel/babili) is used in _production mode_ to minify the compiled scripts for better performance.
-
----
-
-#### `copy` Compiler
-Copy files from one location to another.
-
-###### Configuration
-```json
-{
-  "tasks": [
-    "copy: source/icons.otf > public/fonts"
-  ]
-}
-```
 
 # Deployers
 Deployers are used to move project files to a target environment. Configure deployers by adding `environments` to your `propeller.json` file:

@@ -53,6 +53,7 @@ class Propeller {
 		this.Deployer = require('./deployers/deployer.js');
 
 		// core compilers
+		this.extend(require('./compilers/concat.js'));
 		this.extend(require('./compilers/copy.js'));
 		this.extend(require('./compilers/sass.js'));
 		this.extend(require('./compilers/webpack.js'));
@@ -124,10 +125,13 @@ class Propeller {
     // invalid task
     if(path.length != 3) return false;
 
+		// parse src array
+		path[1] = path[1].trim().replace(/^\s*\[\s*/, '').replace(/\s*\]\s*$/, '').split(/\s*,\s*/);
+
 		// task data
 		return {
 			'compiler': path[0].trim().toLowerCase(),
-			'src': path[1].trim(),
+			'src': path[1],
 			'dest': path[2].trim()
 		};
 

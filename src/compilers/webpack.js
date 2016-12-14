@@ -11,21 +11,21 @@ class Webpack extends Compiler {
 	/**
 	 * Compile src to destination
 	 *
-	 * @param {string} src
+	 * @param {string|array} src
 	 * @param {string} dest
 	 * @return {Object} stream
 	 */
 	compile(src, dest){
 
-		// pop entry file name
+		// pop bundle file name
 		dest = dest.split('/');
-		let entry = dest.pop();
+		let bundle = dest.pop();
 		dest = dest.join('/');
 
 		// webpack config
 		let wpconfig = {
 			output: {
-				filename: entry
+				filename: bundle
 			},
 			module: {
 				loaders: [

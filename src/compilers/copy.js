@@ -6,7 +6,7 @@ class Copy extends Compiler {
 	/**
 	 * Copy files from source to destination
 	 *
-	 * @param {string} src
+	 * @param {string|array} src
 	 * @param {string} dest
 	 * @return {Object} stream
 	 */

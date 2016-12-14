@@ -1,8 +1,9 @@
 {
   "tasks": [
     "sass: scss/**/*.scss > build/css",
-    "webpack: js/app.js > build/js/bundle.js",
-    "copy: copy/file.txt > build/txt"
+    "webpack: js/app.js,js/cats.js > build/js/bundle.js",
+    "copy: [ copy/file.txt, copy/file2.txt ] > build/txt",
+    "concat: [ copy/file.txt, copy/file2.txt ] > build/txt/file3.txt"
   ],
   "environments": {
     "local": {

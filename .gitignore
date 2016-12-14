@@ -1,5 +1,5 @@
 **/.DS_Store
 node_modules
-.jshintrc
+yarn.lock
 test/build
 test/deploy

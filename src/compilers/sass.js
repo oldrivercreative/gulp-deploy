@@ -10,7 +10,7 @@ class Sass extends Compiler {
 	/**
 	 * Compile Sass files to destination
 	 *
-	 * @param {string} src
+	 * @param {string|array} src
 	 * @param {string} dest
 	 * @return {Object} stream
 	 */
