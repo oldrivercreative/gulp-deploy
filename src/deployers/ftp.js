@@ -26,13 +26,13 @@ class Ftp extends Deployer {
 		let connect = ftp.create(connection);
 
 		// get source file(s)
-		let s = gulp.src(src, { base: '.', buffer: false });
+		let s = gulp.src(src, { base: '.', buffer: false }).on('error', gutil.log);
 
 		// only upload newer files
-		s = s.pipe(connect.newer(dest));
+		s = s.pipe(connect.newer(dest)).on('error', gutil.log);
 
 		// pipe to destination
-		return s.pipe(connect.dest(dest));
+		return s.pipe(connect.dest(dest)).on('error', gutil.log);
 
 	}
 

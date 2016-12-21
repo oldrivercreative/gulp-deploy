@@ -1,3 +1,7 @@
+# 1.1.1
+ - December 21, 2016
+ - Add logging to all Gulp streams for better error reporting
+
 # 1.1.0
  - December 14, 2016
  - Add new array syntax to compiler tasks (`concat: [ file1, file2 ] > file3`)

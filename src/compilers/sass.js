@@ -22,6 +22,7 @@ class Sass extends Compiler {
 		// compress and auto-prefix in production builds
 		if(!!gutil.env.production){
 			s = s.pipe(sass({ outputStyle: 'compressed' }))
+				.on('error', gutil.log)
 				.pipe(autoprefixer({
 					browsers: ['last 2 versions'],
 					cascade: false
@@ -31,12 +32,13 @@ class Sass extends Compiler {
 		// write source maps in development builds
 		else{
 			s = s.pipe(sourcemaps.init())
+				.on('error', gutil.log)
 				.pipe(sass())
 				.pipe(sourcemaps.write());
 		}
 
 		// pipe to destination
-		return s.pipe(gulp.dest(dest));
+		return s.pipe(gulp.dest(dest).on('error', gutil.log));
 
 	}
 

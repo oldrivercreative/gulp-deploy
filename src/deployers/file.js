@@ -1,5 +1,6 @@
 const Deployer = require('./deployer.js');
 const gulp = require('gulp');
+const gutil = require('gulp-util');
 const using = require('gulp-using');
 const changed = require('gulp-changed');
 
@@ -19,7 +20,7 @@ class File extends Deployer {
 		let s = gulp.src(src);
 
 		// deploy changed files only
-		s = s.pipe(changed(dest));
+		s = s.pipe(changed(dest)).on('error', gutil.log);
 
 		// log file names as they are transferred
 		s = s.pipe(using({
@@ -27,10 +28,10 @@ class File extends Deployer {
 			path: 'relative',
 			color: 'blue',
 			filesize: true
-		}));
+		})).on('error', gutil.log);
 
 		// pipe to destination
-		return s.pipe(gulp.dest(dest));
+		return s.pipe(gulp.dest(dest)).on('error', gutil.log);
 
 	}
 

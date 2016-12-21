@@ -1,5 +1,6 @@
 const Deployer = require('./deployer.js');
 const gulp = require('gulp');
+const gutil = require('gulp-util');
 const sftp = require('gulp-sftp');
 
 class Sftp extends Deployer {
@@ -22,10 +23,10 @@ class Sftp extends Deployer {
 		connection.remotePath = dest;
 
 		// get source file(s)
-		let s = gulp.src(src);
+		let s = gulp.src(src).on('error', gutil.log);
 
 		// pipe to destination
-		return s.pipe(sftp(connection));
+		return s.pipe(sftp(connection)).on('error', gutil.log);
 
 	}
 

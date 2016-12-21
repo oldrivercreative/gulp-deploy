@@ -47,10 +47,10 @@ class Webpack extends Compiler {
 		}
 
 		// webpack
-		let s = gulp.src(src).pipe(webpack(wpconfig));
+		let s = gulp.src(src).on('error', gutil.log).pipe(webpack(wpconfig));
 
 		// pipe to destination
-		return s.pipe(gulp.dest(dest));
+		return s.pipe(gulp.dest(dest).on('error', gutil.log));
 
 	}
 

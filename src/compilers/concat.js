@@ -1,5 +1,6 @@
 const Compiler = require('./compiler.js');
 const gulp = require('gulp');
+const gutil = require('gulp-util');
 const concat = require('gulp-concat');
 
 class Concat extends Compiler {
@@ -19,7 +20,10 @@ class Concat extends Compiler {
 		dest = dest.join('/');
 
     // concatenate at destination
-		return gulp.src(src).pipe(concat(bundle)).pipe(gulp.dest(dest));
+		return gulp.src(src)
+			.on('error', gutil.log)
+			.pipe(concat(bundle))
+			.pipe(gulp.dest(dest));
 
 	}
 

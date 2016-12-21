@@ -1,5 +1,6 @@
 const Compiler = require('./compiler.js');
 const gulp = require('gulp');
+const gutil = require('gulp-util');
 
 class Copy extends Compiler {
 
@@ -11,7 +12,9 @@ class Copy extends Compiler {
 	 * @return {Object} stream
 	 */
 	compile(src, dest){
-		return gulp.src(src).pipe(gulp.dest(dest));
+		return gulp.src(src)
+			.on('error', gutil.log)
+			.pipe(gulp.dest(dest));
 	}
 
 }
