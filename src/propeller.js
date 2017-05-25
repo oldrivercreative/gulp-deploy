@@ -10,6 +10,7 @@ class Propeller {
 	 * Default configuration settings
 	 *
 	 * @type {Object}
+	 * @return {Propeller}
 	 */
 	constructor(){
 
@@ -19,6 +20,7 @@ class Propeller {
 			compilers: {},
 			deployers: {},
 			tasks: [],
+			tasksComplete: [],
 			environments: {},
 			production: !!gutil.env.production,
 			tasksRunning: false,
@@ -28,10 +30,14 @@ class Propeller {
 		// init
 		this.init();
 
+		return this;
+
 	}
 
 	/**
 	 * Initialize Propeller
+	 *
+	 * @return {void}
 	 */
 	init(){
 
@@ -45,6 +51,8 @@ class Propeller {
 
 	/**
 	 * Load core extensions
+	 *
+	 * @return {void}
 	 */
 	loadCoreExtensions(){
 
@@ -69,6 +77,7 @@ class Propeller {
 	 * Extend Propeller with a new Compiler or Deployer
 	 *
 	 * @param {Object} extension
+	 * @return {Propeller}
 	 */
 	extend(extension){
 
@@ -82,21 +91,26 @@ class Propeller {
 			this.settings.deployers[extension.constructor.name.toLowerCase()] = extension;
 		}
 
+		return this;
+
 	}
 
 	/**
 	 * Load configuration from JSON object
 	 *
 	 * @param {Object} config
+	 * @return {Propeller}
 	 */
 	configure(config){
 		if(config) Object.assign(this.settings, config);
+		return this;
 	}
 
 	/**
 	 * Load configuration file
 	 *
 	 * @param {string} path
+	 * @return {Propeller}
 	 */
 	loadConfigFile(path){
 
@@ -107,7 +121,7 @@ class Propeller {
 		gutil.log('Using Propeller file', gutil.colors.magenta(path));
 
 		// configure
-		this.configure(require(path));
+		return this.configure(require(path));
 
 	}
 
@@ -166,6 +180,8 @@ class Propeller {
 
 	/**
 	 * Run next compiler task
+	 *
+	 * @return {Propeller}
 	 */
 	run(){
 
@@ -181,6 +197,9 @@ class Propeller {
 			// run
 			this.runTask(task, this);
 
+			// add to complete tasks
+			this.settings.tasksComplete.push(task);
+
 		}
 
 		// done
@@ -194,9 +213,12 @@ class Propeller {
 				this.runDeploy();
 			}
 
+			// reset tasks queue
+			this.settings.tasks = this.settings.tasksComplete;
+			this.settings.tasksComplete = [];
+
 		}
 
-		// return propeller for chaining
 		return this;
 
 	}
@@ -205,6 +227,7 @@ class Propeller {
 	 * Queue deployment to target environment
 	 *
 	 * @param {string} environment
+	 * @return {Propeller}
 	 */
 	deploy(environment){
 
@@ -219,13 +242,14 @@ class Propeller {
 			this.runDeploy();
 		}
 
-		// return propeller for chaining
 		return this;
 
 	}
 
 	/**
 	 * Run next queued deployment task
+	 *
+	 * @return {void}
 	 */
 	runDeploy(){
 

@@ -1,3 +1,8 @@
+# 1.2.1
+ - May 25, 2017
+ - Reset tasks queue after completing all tasks (this is good if you'd like to re-run the tasks in a continuous stream like `gulp.watch`)
+ - Tweaks to code documentation
+
 # 1.2.0
  - May 25, 2017
  - You can now enable `gitignore` in your deploy environments to automatically exclude all files from the deploy stream that are in your .gitignore file
