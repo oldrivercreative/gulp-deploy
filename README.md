@@ -130,7 +130,8 @@ Deployers are used to move project files to a target environment. Configure depl
     "local": {
       "type": "file",
       "src": "build/**",
-      "dest": "public/html"
+      "dest": "public/html",
+      "gitignore": false
     }
   }
 }
@@ -161,7 +162,8 @@ Deploy assets using the file system.
     "web1": {
       "type": "file",
       "src": "public/**",
-      "dest": "/volumes/web1/public_html"
+      "dest": "/volumes/web1/public_html",
+      "gitignore": false
     }
   }
 }
@@ -182,6 +184,7 @@ The FTP deployer utilizes [vinyl-ftp](https://www.npmjs.com/package/vinyl-ftp) t
       "type": "ftp",
       "src": "public/**",
       "dest": "public_html/staging",
+      "gitignore": false,
       "connection": {
         "host": "staging.somedomain.com",
         "user": "kyle",
@@ -209,6 +212,7 @@ The SFTP deployer utilizes [gulp-sftp](https://www.npmjs.com/package/gulp-sftp) 
       "type": "sftp",
       "src": "public/**",
       "dest": "public_html/www",
+      "gitignore": false,
       "connection": {
         "host": "somedomain.com",
         "user": "kyle",
@@ -280,9 +284,10 @@ class WebDav extends propeller.Deployer {
    * @param {string} src
    * @param {string} dest
    * @param {Object} connection
+   * @param {boolean} gitignore
    * @return {Object} stream
    */
-  deploy(src, dest, connection){
+  deploy(src, dest, connection, gitignore){
 
     // do stuff
 
@@ -304,6 +309,7 @@ Utilize custom deployers by referring to them in your environments list. Always 
       "type": "webdav",
       "src": "public/**",
       "dest": "public_html/staging1",
+      "gitignore": false,
       "connection": {
         "key1": "value1",
         "key2": "value2"

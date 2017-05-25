@@ -12,9 +12,10 @@ class Deployer {
    * @param {string} src
    * @param {string} dest
    * @param {Object} connection
+   * @param {boolean} gitignore
    * @return {Object} stream
    */
-  deploy(src, dest, connection){
+  deploy(src, dest, connection, gitignore){
     //
   }
 
@@ -30,7 +31,7 @@ class Deployer {
     if(!environment) throw new gutil.PluginError(PLUGIN_NAME, `Deploy failed to run: no environment given`);
 
     // deploy
-    let stream = this.deploy(environment.src, environment.dest, environment.connection ? environment.connection : false);
+    let stream = this.deploy(environment.src, environment.dest, environment.connection ? environment.connection : false, environment.gitignore ? true : false);
 
     // next
     stream.on('end', function(){

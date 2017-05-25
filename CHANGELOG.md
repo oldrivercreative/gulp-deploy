@@ -1,3 +1,8 @@
+# 1.2.0
+ - May 25, 2017
+ - You can now enable `gitignore` in your deploy environments to automatically exclude all files from the deploy stream that are in your .gitignore file
+ - Dependency gulp-webpack renamed to webpack-stream
+
 # 1.1.1
  - December 21, 2016
  - Add logging to all Gulp streams for better error reporting

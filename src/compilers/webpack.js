@@ -1,7 +1,7 @@
 const Compiler = require('./compiler.js');
 const gulp = require('gulp');
 const gutil = require('gulp-util');
-const webpack = require('gulp-webpack');
+const webpack = require('webpack-stream');
 
 /**
  * Webpack + Babel + ES2015 JavaScript compiler

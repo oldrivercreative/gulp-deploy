@@ -9,7 +9,8 @@
     "local": {
       "type": "file",
       "src": "build/**",
-      "dest": "deploy"
+      "dest": "deploy",
+      "gitignore": true
     },
     "staging": {
       "type": "ftp",
