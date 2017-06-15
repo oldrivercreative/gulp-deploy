@@ -1,3 +1,8 @@
+# 1.2.2
+ - June 15, 2017
+ - Return stream from compiler and deploy tasks
+ - Update NPM dependencies
+
 # 1.2.1
  - May 25, 2017
  - Reset tasks queue after completing all tasks (this is good if you'd like to re-run the tasks in a continuous stream like `gulp.watch`)

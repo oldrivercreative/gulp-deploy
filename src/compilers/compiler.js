@@ -21,6 +21,7 @@ class Compiler {
    *
    * @param {Object} operation
    * @param {Object} propeller
+   * @return {Object} stream
    */
   run(operation, propeller){
 
@@ -36,6 +37,9 @@ class Compiler {
     stream.on('end', function(){
       propeller.run();
     });
+
+    // return stream
+    return stream;
 
   }
 

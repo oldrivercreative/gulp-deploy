@@ -24,6 +24,7 @@ class Deployer {
    *
    * @param {Object} environment
    * @param {Object} propeller
+   * @return {Object} stream
    */
   run(environment, propeller){
 
@@ -37,6 +38,9 @@ class Deployer {
     stream.on('end', function(){
       propeller.runDeploy();
     });
+
+    // return stream
+    return stream;
 
   }
 
